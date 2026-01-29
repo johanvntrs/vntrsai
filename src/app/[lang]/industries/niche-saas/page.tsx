@@ -6,6 +6,8 @@ import { Hero } from '@/components/ui/Hero';
 import { Section } from '@/components/ui/Section';
 import { BulletList } from '@/components/ui/BulletList';
 import { CTA } from '@/components/ui/CTA';
+import { CaseStudyCard } from '@/components/ui/CaseStudyCard';
+import { getCaseStudiesByIndustry } from '@/lib/case-studies';
 
 export async function generateMetadata({
   params,
@@ -34,6 +36,9 @@ export default async function NicheSaasPage({
   const servicesPath = lang === 'sv' ? 'tjanster' : 'services';
   const industriesPath = lang === 'sv' ? 'branscher' : 'industries';
   const contactPath = lang === 'sv' ? 'kontakt' : 'contact';
+  const casePath = lang === 'sv' ? 'case' : 'case-studies';
+
+  const saasCaseStudies = getCaseStudiesByIndustry('saas');
 
   const breadcrumbs = [
     { label: lang === 'sv' ? 'Hem' : 'Home', href: `/${lang}` },
@@ -131,8 +136,30 @@ export default async function NicheSaasPage({
         </div>
       </Section>
 
+      {/* Case Studies */}
+      <Section title={lang === 'sv' ? 'Case studies' : 'Case studies'} background="gray">
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {saasCaseStudies.map((cs) => (
+            <CaseStudyCard
+              key={cs.slug}
+              caseStudy={cs}
+              lang={lang}
+              basePath={`/${lang}/${casePath}`}
+            />
+          ))}
+        </div>
+        <div className="text-center mt-8">
+          <Link
+            href={`/${lang}/${casePath}`}
+            className="text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            {lang === 'sv' ? 'Se alla case studies' : 'View all case studies'} &rarr;
+          </Link>
+        </div>
+      </Section>
+
       {/* Security & GDPR */}
-      <Section title={lang === 'sv' ? 'Säkerhet & GDPR' : 'Security & GDPR'} background="gray">
+      <Section title={lang === 'sv' ? 'Säkerhet & GDPR' : 'Security & GDPR'}>
         <div className="max-w-2xl mx-auto">
           <BulletList items={securityConsiderations} icon="check" />
         </div>
