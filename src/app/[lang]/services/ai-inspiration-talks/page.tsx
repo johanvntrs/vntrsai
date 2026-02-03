@@ -33,7 +33,6 @@ export default async function AITalksPage({
   const dict = await getDictionary(lang);
   const servicesPath = lang === 'sv' ? 'tjanster' : 'services';
   const contactPath = lang === 'sv' ? 'kontakt' : 'contact';
-  const industriesPath = lang === 'sv' ? 'branscher' : 'industries';
 
   const breadcrumbs = [
     { label: lang === 'sv' ? 'Hem' : 'Home', href: `/${lang}` },
@@ -109,21 +108,6 @@ export default async function AITalksPage({
         { question: 'How many can attend?', answer: 'No upper limit—we have held talks for anywhere from 5 to 500 people.' },
       ];
 
-  const industries = [
-    {
-      name: lang === 'sv' ? 'Eventbranschen' : 'Event Industry',
-      href: `/${lang}/${industriesPath}/${lang === 'sv' ? 'eventbranschen' : 'event-industry'}`,
-    },
-    {
-      name: 'Private Equity',
-      href: `/${lang}/${industriesPath}/private-equity`,
-    },
-    {
-      name: lang === 'sv' ? 'Nischad SaaS' : 'Niche SaaS',
-      href: `/${lang}/${industriesPath}/${lang === 'sv' ? 'nischad-saas' : 'niche-saas'}`,
-    },
-  ];
-
   const relatedServices = [
     {
       name: lang === 'sv' ? 'AI-workshop' : 'AI Workshop',
@@ -131,9 +115,9 @@ export default async function AITalksPage({
       href: `/${lang}/${servicesPath}/ai-workshops`,
     },
     {
-      name: lang === 'sv' ? 'AI-konsulting' : 'AI Consulting',
-      description: lang === 'sv' ? 'Full implementation från strategi till produktion' : 'Full implementation from strategy to production',
-      href: `/${lang}/${servicesPath}/${lang === 'sv' ? 'ai-konsulting' : 'ai-consulting'}`,
+      name: lang === 'sv' ? 'AI-utbildning' : 'AI Training',
+      description: lang === 'sv' ? 'Djupare AI-utbildning för er ledningsgrupp' : 'Deeper AI training for your leadership team',
+      href: `/${lang}/${servicesPath}/${lang === 'sv' ? 'ai-utbildning' : 'ai-training'}`,
     },
   ];
 
@@ -194,29 +178,14 @@ export default async function AITalksPage({
         </div>
       </Section>
 
-      {/* Where this works best - Industry links */}
-      <Section title={lang === 'sv' ? 'Branscher vi fokuserar på' : 'Where this works best'} background="gray">
-        <div className="flex flex-wrap justify-center gap-4">
-          {industries.map((industry) => (
-            <Link
-              key={industry.name}
-              href={industry.href}
-              className="rounded-full border border-gray-200 bg-white px-6 py-3 text-sm font-medium text-gray-700 hover:border-gray-300 transition-colors"
-            >
-              {industry.name}
-            </Link>
-          ))}
-        </div>
-      </Section>
-
       {/* Next steps */}
-      <Section title={lang === 'sv' ? 'Vill ni gå vidare?' : 'Want to go further?'}>
+      <Section title={lang === 'sv' ? 'Vill ni gå vidare?' : 'Want to go further?'} background="gray">
         <div className="max-w-2xl mx-auto space-y-4">
           {relatedServices.map((service) => (
             <Link
               key={service.name}
               href={service.href}
-              className="block p-6 rounded-xl border border-gray-200 hover:border-gray-300 hover:shadow-sm transition-all"
+              className="block p-6 rounded-xl border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm transition-all"
             >
               <div className="font-medium text-gray-900">{service.name}</div>
               <div className="mt-1 text-sm text-gray-600">{service.description}</div>
@@ -226,7 +195,7 @@ export default async function AITalksPage({
       </Section>
 
       {/* FAQ */}
-      <Section title={lang === 'sv' ? 'Vanliga frågor' : 'Frequently asked questions'} background="gray">
+      <Section title={lang === 'sv' ? 'Vanliga frågor' : 'Frequently asked questions'}>
         <div className="max-w-3xl mx-auto">
           <FAQ items={faqs} schemaId="talks-faq" />
         </div>

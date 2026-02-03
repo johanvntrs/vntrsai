@@ -14,21 +14,12 @@ export const localeNames: Record<Locale, string> = {
 export const routeMappings: Record<string, Record<Locale, string>> = {
   // Main sections
   services: { en: 'services', sv: 'tjanster' },
-  industries: { en: 'industries', sv: 'branscher' },
-  'case-studies': { en: 'case-studies', sv: 'case' },
-  resources: { en: 'resources', sv: 'resurser' },
   contact: { en: 'contact', sv: 'kontakt' },
-  guides: { en: 'guides', sv: 'guider' },
 
   // Services
-  'ai-consulting': { en: 'ai-consulting', sv: 'ai-konsulting' },
+  'ai-training': { en: 'ai-training', sv: 'ai-utbildning' },
   'ai-workshops': { en: 'ai-workshops', sv: 'ai-workshops' },
   'ai-inspiration-talks': { en: 'ai-inspiration-talks', sv: 'ai-inspirationsforelasning' },
-
-  // Industries
-  'event-industry': { en: 'event-industry', sv: 'eventbranschen' },
-  'private-equity': { en: 'private-equity', sv: 'private-equity' },
-  'niche-saas': { en: 'niche-saas', sv: 'nischad-saas' },
 };
 
 // Get localized path

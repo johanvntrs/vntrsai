@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { type Locale, getDictionary } from '@/lib/i18n';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { Hero } from '@/components/ui/Hero';
@@ -34,7 +33,6 @@ export default async function AIWorkshopsPage({
   const dict = await getDictionary(lang);
   const servicesPath = lang === 'sv' ? 'tjanster' : 'services';
   const contactPath = lang === 'sv' ? 'kontakt' : 'contact';
-  const industriesPath = lang === 'sv' ? 'branscher' : 'industries';
 
   const breadcrumbs = [
     { label: lang === 'sv' ? 'Hem' : 'Home', href: `/${lang}` },
@@ -100,21 +98,6 @@ export default async function AIWorkshopsPage({
         { question: 'Do we need technical staff present?', answer: 'No, the workshop requires no technical background. We explain everything in business terms.' },
       ];
 
-  const industries = [
-    {
-      name: lang === 'sv' ? 'Eventbranschen' : 'Event Industry',
-      href: `/${lang}/${industriesPath}/${lang === 'sv' ? 'eventbranschen' : 'event-industry'}`,
-    },
-    {
-      name: 'Private Equity',
-      href: `/${lang}/${industriesPath}/private-equity`,
-    },
-    {
-      name: lang === 'sv' ? 'Nischad SaaS' : 'Niche SaaS',
-      href: `/${lang}/${industriesPath}/${lang === 'sv' ? 'nischad-saas' : 'niche-saas'}`,
-    },
-  ];
-
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -177,23 +160,8 @@ export default async function AIWorkshopsPage({
         <ProcessSteps steps={dict.services.workshops.agenda} />
       </Section>
 
-      {/* Where this works best - Industry links */}
-      <Section title={lang === 'sv' ? 'Branscher vi fokuserar på' : 'Where this works best'}>
-        <div className="flex flex-wrap justify-center gap-4">
-          {industries.map((industry) => (
-            <Link
-              key={industry.name}
-              href={industry.href}
-              className="rounded-full border border-gray-200 px-6 py-3 text-sm font-medium text-gray-700 hover:border-gray-300 hover:bg-gray-50 transition-colors"
-            >
-              {industry.name}
-            </Link>
-          ))}
-        </div>
-      </Section>
-
       {/* FAQ */}
-      <Section title={lang === 'sv' ? 'Vanliga frågor' : 'Frequently asked questions'} background="gray">
+      <Section title={lang === 'sv' ? 'Vanliga frågor' : 'Frequently asked questions'}>
         <div className="max-w-3xl mx-auto">
           <FAQ items={faqs} schemaId="workshop-faq" />
         </div>

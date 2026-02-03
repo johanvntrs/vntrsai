@@ -37,7 +37,7 @@ export default async function ServicesPage({
     {
       title: dict.home.offerings.consulting.title,
       description: dict.home.offerings.consulting.description,
-      href: `/${lang}/${servicesPath}/${lang === 'sv' ? 'ai-konsulting' : 'ai-consulting'}`,
+      href: `/${lang}/${servicesPath}/${lang === 'sv' ? 'ai-utbildning' : 'ai-training'}`,
     },
     {
       title: dict.home.offerings.workshop.title,

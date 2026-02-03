@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { type Locale, getDictionary } from '@/lib/i18n';
 import { Hero } from '@/components/ui/Hero';
 import { Section } from '@/components/ui/Section';
@@ -41,14 +40,13 @@ export default async function HomePage({
   const dict = await getDictionary(lang);
 
   const servicesPath = lang === 'sv' ? 'tjanster' : 'services';
-  const industriesPath = lang === 'sv' ? 'branscher' : 'industries';
   const contactPath = lang === 'sv' ? 'kontakt' : 'contact';
 
   const offeringsCards = [
     {
       title: dict.home.offerings.consulting.title,
       description: dict.home.offerings.consulting.description,
-      href: `/${lang}/${servicesPath}/${lang === 'sv' ? 'ai-konsulting' : 'ai-consulting'}`,
+      href: `/${lang}/${servicesPath}/${lang === 'sv' ? 'ai-utbildning' : 'ai-training'}`,
     },
     {
       title: dict.home.offerings.workshop.title,
@@ -59,21 +57,6 @@ export default async function HomePage({
       title: dict.home.offerings.talk.title,
       description: dict.home.offerings.talk.description,
       href: `/${lang}/${servicesPath}/${lang === 'sv' ? 'ai-inspirationsforelasning' : 'ai-inspiration-talks'}`,
-    },
-  ];
-
-  const industryCards = [
-    {
-      title: dict.home.industries[0],
-      href: `/${lang}/${industriesPath}/${lang === 'sv' ? 'eventbranschen' : 'event-industry'}`,
-    },
-    {
-      title: dict.home.industries[1],
-      href: `/${lang}/${industriesPath}/private-equity`,
-    },
-    {
-      title: dict.home.industries[2],
-      href: `/${lang}/${industriesPath}/${lang === 'sv' ? 'nischad-saas' : 'niche-saas'}`,
     },
   ];
 
@@ -107,28 +90,13 @@ export default async function HomePage({
         </CardGrid>
       </Section>
 
-      {/* Industries */}
-      <Section title={dict.home.industriesTitle}>
-        <div className="flex flex-wrap justify-center gap-4">
-          {industryCards.map((industry) => (
-            <Link
-              key={industry.title}
-              href={industry.href}
-              className="rounded-full border border-gray-200 px-6 py-3 text-sm font-medium text-gray-700 hover:border-gray-300 hover:bg-gray-50 transition-colors"
-            >
-              {industry.title}
-            </Link>
-          ))}
-        </div>
-      </Section>
-
       {/* How we work */}
-      <Section title={dict.home.howWeWorkTitle} background="gray">
+      <Section title={dict.home.howWeWorkTitle}>
         <ProcessSteps steps={dict.home.howWeWorkSteps} />
       </Section>
 
       {/* Trusted by */}
-      <Section title={dict.home.trustedByTitle}>
+      <Section title={dict.home.trustedByTitle} background="gray">
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60">
           {/* Placeholder logos - replace with actual client logos */}
           {[1, 2, 3, 4, 5].map((i) => (
@@ -143,7 +111,7 @@ export default async function HomePage({
       </Section>
 
       {/* FAQ Preview */}
-      <Section title={dict.home.faqTitle} background="gray">
+      <Section title={dict.home.faqTitle}>
         <div className="max-w-3xl mx-auto">
           <FAQ items={dict.home.faqs} schemaId="home-faq" />
         </div>

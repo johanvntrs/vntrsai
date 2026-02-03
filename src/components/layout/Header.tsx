@@ -15,9 +15,6 @@ export function Header({ lang, dict }: HeaderProps) {
 
   const navigation = [
     { name: dict.nav.services, href: `/${lang}/${lang === 'sv' ? 'tjanster' : 'services'}` },
-    { name: dict.nav.industries, href: `/${lang}/${lang === 'sv' ? 'branscher' : 'industries'}` },
-    { name: dict.nav.caseStudies, href: `/${lang}/${lang === 'sv' ? 'case' : 'case-studies'}` },
-    { name: dict.nav.resources, href: `/${lang}/${lang === 'sv' ? 'resurser' : 'resources'}` },
     { name: dict.nav.contact, href: `/${lang}/${lang === 'sv' ? 'kontakt' : 'contact'}` },
   ];
 

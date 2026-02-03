@@ -40,7 +40,7 @@ export default async function ContactPage({
   const quickLinks = [
     {
       name: dict.home.offerings.consulting.title,
-      href: `/${lang}/${servicesPath}/${lang === 'sv' ? 'ai-konsulting' : 'ai-consulting'}`,
+      href: `/${lang}/${servicesPath}/${lang === 'sv' ? 'ai-utbildning' : 'ai-training'}`,
     },
     {
       name: dict.home.offerings.workshop.title,
