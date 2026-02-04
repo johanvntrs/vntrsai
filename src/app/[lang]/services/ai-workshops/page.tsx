@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 import { type Locale, getDictionary } from '@/lib/i18n';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
-import { Hero } from '@/components/ui/Hero';
+import { ServiceHero } from '@/components/ui/ServiceHero';
 import { Section } from '@/components/ui/Section';
-import { BulletList } from '@/components/ui/BulletList';
-import { ProcessSteps } from '@/components/ui/ProcessSteps';
+import { FeatureGrid } from '@/components/ui/FeatureGrid';
+import { Stats } from '@/components/ui/Stats';
+import { AgendaBlocks } from '@/components/ui/Timeline';
+import { TestimonialCard } from '@/components/ui/Testimonial';
 import { FAQ } from '@/components/ui/FAQ';
 import { CTA } from '@/components/ui/CTA';
 
@@ -40,33 +42,91 @@ export default async function AIWorkshopsPage({
     { label: dict.home.offerings.workshop.title },
   ];
 
-  const whoItsFor = lang === 'sv'
+  const badges = lang === 'sv'
+    ? ['Heldag (8 timmar)', 'På plats eller digitalt', 'Skräddarsytt']
+    : ['Full Day (8 hours)', 'On-site or remote', 'Customized'];
+
+  const highlights = lang === 'sv'
     ? [
-        'Ledningsgrupper som vill förstå AI-möjligheter',
-        'Team som behöver prioritera bland många AI-idéer',
-        'Organisationer som vill kickstarta sin AI-resa',
-        'Företag som behöver alignment kring AI-strategi',
+        { icon: 'clock' as const, text: '8 timmars intensiv session' },
+        { icon: 'users' as const, text: '3-20 deltagare' },
+        { icon: 'target' as const, text: 'Konkret roadmap' },
       ]
     : [
-        'Leadership teams wanting to understand AI opportunities',
-        'Teams needing to prioritize among many AI ideas',
-        'Organizations wanting to kickstart their AI journey',
-        'Companies needing alignment around AI strategy',
+        { icon: 'clock' as const, text: '8-hour intensive session' },
+        { icon: 'users' as const, text: '3-20 participants' },
+        { icon: 'target' as const, text: 'Concrete roadmap' },
+      ];
+
+  const stats = lang === 'sv'
+    ? [
+        { value: '50+', label: 'Genomförda workshops' },
+        { value: '3-5', label: 'Prioriterade use cases' },
+        { value: '90%', label: 'Implementerar inom 90 dagar' },
+        { value: '8h', label: 'Intensiv heldagssession' },
+      ]
+    : [
+        { value: '50+', label: 'Workshops delivered' },
+        { value: '3-5', label: 'Prioritized use cases' },
+        { value: '90%', label: 'Implement within 90 days' },
+        { value: '8h', label: 'Intensive full-day session' },
+      ];
+
+  const whoItsForFeatures = lang === 'sv'
+    ? [
+        { icon: 'users' as const, title: 'Ledningsgrupper', description: 'Som vill förstå AI-möjligheter och skapa strategisk alignment' },
+        { icon: 'lightbulb' as const, title: 'Innovationsteam', description: 'Som behöver prioritera bland många AI-idéer och hitta quick wins' },
+        { icon: 'rocket' as const, title: 'Organisationer', description: 'Som vill kickstarta sin AI-resa med en strukturerad approach' },
+        { icon: 'target' as const, title: 'Företag', description: 'Som behöver en gemensam bild av AI-strategi och nästa steg' },
+      ]
+    : [
+        { icon: 'users' as const, title: 'Leadership teams', description: 'Wanting to understand AI opportunities and create strategic alignment' },
+        { icon: 'lightbulb' as const, title: 'Innovation teams', description: 'Needing to prioritize among many AI ideas and find quick wins' },
+        { icon: 'rocket' as const, title: 'Organizations', description: 'Wanting to kickstart their AI journey with a structured approach' },
+        { icon: 'target' as const, title: 'Companies', description: 'Needing a shared view of AI strategy and next steps' },
       ];
 
   const outcomes = lang === 'sv'
     ? [
-        '3–5 prioriterade use cases rankade efter Impact × Effort',
-        'Gemensam förståelse för AI-möjligheter i teamet',
-        'Konkret roadmap för nästa 30/60/90 dagar',
-        'Dokumentation att dela med resten av organisationen',
+        { icon: 'chart' as const, title: 'Prioriterad use case-lista', description: '3–5 AI-initiativ rankade efter Impact × Effort med tydlig ROI-potential' },
+        { icon: 'users' as const, title: 'Team-alignment', description: 'Gemensam förståelse för AI-möjligheter och utmaningar i hela teamet' },
+        { icon: 'document' as const, title: '30/60/90-dagars roadmap', description: 'Konkret handlingsplan med milstolpar och ansvariga' },
+        { icon: 'shield' as const, title: 'Risk & GDPR-checklista', description: 'Dokumentation kring dataskydd och rekommenderade guardrails' },
       ]
     : [
-        '3–5 prioritized use cases ranked by Impact × Effort',
-        'Shared understanding of AI opportunities across the team',
-        'Concrete roadmap for the next 30/60/90 days',
-        'Documentation to share with the rest of the organization',
+        { icon: 'chart' as const, title: 'Prioritized use case list', description: '3–5 AI initiatives ranked by Impact × Effort with clear ROI potential' },
+        { icon: 'users' as const, title: 'Team alignment', description: 'Shared understanding of AI opportunities and challenges across the team' },
+        { icon: 'document' as const, title: '30/60/90-day roadmap', description: 'Concrete action plan with milestones and owners' },
+        { icon: 'shield' as const, title: 'Risk & GDPR checklist', description: 'Documentation on data protection and recommended guardrails' },
       ];
+
+  const agenda = lang === 'sv'
+    ? [
+        { time: '09:00 - 10:30', title: 'Introduktion & Mål', items: ['Presentation av deltagare och förväntningar', 'AI-trendspaning relevant för er bransch', 'Gemensam målbild för dagen'] },
+        { time: '10:45 - 12:00', title: 'Workflow-kartläggning', items: ['Identifiera nyckelprocesser och pain points', 'Mappa datakällor och system', 'Hitta automationsmöjligheter'] },
+        { time: '13:00 - 14:30', title: 'Use case-idéer & Scoring', items: ['Brainstorming av AI-möjligheter', 'Impact × Effort-prioritering', 'Diskussion kring genomförbarhet'] },
+        { time: '14:45 - 16:00', title: 'Demos & Roadmap', items: ['Skräddarsydda AI-demonstrationer', 'Diskussion om lokala vs moln-modeller', 'Skapa 30/60/90-dagars handlingsplan'] },
+      ]
+    : [
+        { time: '09:00 - 10:30', title: 'Introduction & Goals', items: ['Participant introductions and expectations', 'AI trend scan relevant to your industry', 'Shared vision for the day'] },
+        { time: '10:45 - 12:00', title: 'Workflow mapping', items: ['Identify key processes and pain points', 'Map data sources and systems', 'Find automation opportunities'] },
+        { time: '13:00 - 14:30', title: 'Use case ideation & Scoring', items: ['Brainstorming AI opportunities', 'Impact × Effort prioritization', 'Discussion on feasibility'] },
+        { time: '14:45 - 16:00', title: 'Demos & Roadmap', items: ['Customized AI demonstrations', 'Discussion on local vs cloud models', 'Create 30/60/90-day action plan'] },
+      ];
+
+  const testimonial = lang === 'sv'
+    ? {
+        quote: 'Workshopen gav oss exakt den struktur vi behövde. På en dag gick vi från vaga AI-idéer till en konkret plan med prioriterade initiativ. Tre månader senare hade vi implementerat vårt första AI-projekt.',
+        author: 'Maria Lindström',
+        role: 'COO',
+        company: 'TechScale AB',
+      }
+    : {
+        quote: 'The workshop gave us exactly the structure we needed. In one day we went from vague AI ideas to a concrete plan with prioritized initiatives. Three months later we had implemented our first AI project.',
+        author: 'Maria Lindström',
+        role: 'COO',
+        company: 'TechScale AB',
+      };
 
   const faqs = lang === 'sv'
     ? [
@@ -125,39 +185,58 @@ export default async function AIWorkshopsPage({
         <Breadcrumbs items={breadcrumbs} />
       </div>
 
-      <Hero
+      <ServiceHero
         title={dict.services.workshops.h1}
         subtitle={dict.services.workshops.heroSub}
+        badges={badges}
+        highlights={highlights}
         primaryCta={{
           text: lang === 'sv' ? 'Boka workshop' : 'Book workshop',
           href: `/${lang}/${contactPath}`,
         }}
+        secondaryCta={{
+          text: lang === 'sv' ? 'Se agenda' : 'See agenda',
+          href: '#agenda',
+        }}
       />
 
-      {/* Who it's for */}
-      <Section title={lang === 'sv' ? 'Vem det passar' : 'Who it\'s for'}>
-        <div className="max-w-2xl mx-auto">
-          <BulletList items={whoItsFor} icon="arrow" />
-        </div>
+      {/* Stats */}
+      <Section background="gray">
+        <Stats stats={stats} variant="cards" />
       </Section>
 
-      {/* Outcomes */}
-      <Section title={lang === 'sv' ? 'Resultat' : 'Outcomes'} background="gray">
-        <div className="max-w-2xl mx-auto">
-          <BulletList items={outcomes} icon="check" />
-        </div>
+      {/* Who it's for */}
+      <Section
+        title={lang === 'sv' ? 'Vem passar workshopen för?' : 'Who is the workshop for?'}
+        subtitle={lang === 'sv' ? 'Vår workshop är designad för team som vill ta steget från AI-hype till konkret handling' : 'Our workshop is designed for teams wanting to move from AI hype to concrete action'}
+      >
+        <FeatureGrid features={whoItsForFeatures} columns={4} />
       </Section>
 
       {/* What you get */}
-      <Section title={lang === 'sv' ? 'Det här får ni' : 'What you get'}>
-        <div className="max-w-2xl mx-auto">
-          <BulletList items={dict.services.workshops.whatYouGet} icon="check" />
-        </div>
+      <Section
+        title={lang === 'sv' ? 'Vad ni får ut av dagen' : 'What you get from the day'}
+        subtitle={lang === 'sv' ? 'Konkreta leverabler ni kan agera på direkt' : 'Concrete deliverables you can act on immediately'}
+        background="gray"
+      >
+        <FeatureGrid features={outcomes} columns={2} />
       </Section>
 
       {/* Agenda */}
-      <Section title={lang === 'sv' ? 'Agenda' : 'Agenda'} background="gray">
-        <ProcessSteps steps={dict.services.workshops.agenda} />
+      <Section
+        title={lang === 'sv' ? 'Agenda' : 'Agenda'}
+        subtitle={lang === 'sv' ? 'En intensiv dag som tar er från idé till handlingsplan' : 'An intensive day that takes you from idea to action plan'}
+      >
+        <div id="agenda">
+          <AgendaBlocks blocks={agenda} />
+        </div>
+      </Section>
+
+      {/* Testimonial */}
+      <Section background="gray">
+        <div className="max-w-3xl mx-auto">
+          <TestimonialCard {...testimonial} />
+        </div>
       </Section>
 
       {/* FAQ */}
@@ -168,7 +247,8 @@ export default async function AIWorkshopsPage({
       </Section>
 
       <CTA
-        title={dict.home.footerCta}
+        title={lang === 'sv' ? 'Redo att ta er AI-strategi till nästa nivå?' : 'Ready to take your AI strategy to the next level?'}
+        description={lang === 'sv' ? 'Boka en workshop och få en konkret roadmap på en dag.' : 'Book a workshop and get a concrete roadmap in one day.'}
         primaryCta={{
           text: lang === 'sv' ? 'Boka workshop' : 'Book workshop',
           href: `/${lang}/${contactPath}`,

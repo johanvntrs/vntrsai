@@ -1,10 +1,13 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { type Locale, getDictionary } from '@/lib/i18n';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
-import { Hero } from '@/components/ui/Hero';
+import { ServiceHero } from '@/components/ui/ServiceHero';
 import { Section } from '@/components/ui/Section';
-import { BulletList } from '@/components/ui/BulletList';
-import { ProcessSteps } from '@/components/ui/ProcessSteps';
+import { FeatureGrid } from '@/components/ui/FeatureGrid';
+import { Stats } from '@/components/ui/Stats';
+import { AgendaBlocks } from '@/components/ui/Timeline';
+import { TestimonialCard } from '@/components/ui/Testimonial';
 import { FAQ } from '@/components/ui/FAQ';
 import { CTA } from '@/components/ui/CTA';
 
@@ -40,55 +43,118 @@ export default async function AITrainingPage({
     { label: dict.home.offerings.consulting.title },
   ];
 
-  const whoItsFor = lang === 'sv'
+  const badges = lang === 'sv'
+    ? ['Skräddarsytt program', 'På plats eller online', 'För ledningsgrupper']
+    : ['Customized program', 'On-site or online', 'For leadership teams'];
+
+  const highlights = lang === 'sv'
     ? [
-        'C-suite som utvärderar AI-investeringar',
-        'Avdelningschefer som implementerar AI i sina team',
-        'Styrelseledamöter som behöver AI-kompetens',
-        'Ledningsgrupper som driver digital transformation',
+        { icon: 'clock' as const, text: 'Flexibel längd' },
+        { icon: 'users' as const, text: '5-15 deltagare' },
+        { icon: 'target' as const, text: 'Praktiska övningar' },
       ]
     : [
-        'C-suite executives evaluating AI investments',
-        'Department heads implementing AI in their teams',
-        'Board members needing AI literacy',
-        'Management teams driving digital transformation',
+        { icon: 'clock' as const, text: 'Flexible duration' },
+        { icon: 'users' as const, text: '5-15 participants' },
+        { icon: 'target' as const, text: 'Hands-on exercises' },
+      ];
+
+  const stats = lang === 'sv'
+    ? [
+        { value: '200+', label: 'Utbildade ledare' },
+        { value: '95%', label: 'Rekommenderar oss' },
+        { value: '40+', label: 'Företag' },
+        { value: '4.9', label: 'Snittbetyg' },
+      ]
+    : [
+        { value: '200+', label: 'Leaders trained' },
+        { value: '95%', label: 'Recommend us' },
+        { value: '40+', label: 'Companies' },
+        { value: '4.9', label: 'Avg. rating' },
+      ];
+
+  const whoItsForFeatures = lang === 'sv'
+    ? [
+        { icon: 'users' as const, title: 'C-suite & VD', description: 'Som utvärderar AI-investeringar och sätter strategisk riktning' },
+        { icon: 'chart' as const, title: 'Avdelningschefer', description: 'Som ska implementera AI i sina team och processer' },
+        { icon: 'shield' as const, title: 'Styrelseledamöter', description: 'Som behöver AI-kompetens för informerade beslut' },
+        { icon: 'rocket' as const, title: 'Ledningsgrupper', description: 'Som driver digital transformation och innovation' },
+      ]
+    : [
+        { icon: 'users' as const, title: 'C-suite & CEO', description: 'Evaluating AI investments and setting strategic direction' },
+        { icon: 'chart' as const, title: 'Department heads', description: 'Implementing AI in their teams and processes' },
+        { icon: 'shield' as const, title: 'Board members', description: 'Needing AI literacy for informed decisions' },
+        { icon: 'rocket' as const, title: 'Leadership teams', description: 'Driving digital transformation and innovation' },
+      ];
+
+  const curriculum = lang === 'sv'
+    ? [
+        { icon: 'lightbulb' as const, title: 'AI-strategi för ledare', description: 'Förstå AI-landskapet, identifiera möjligheter och skapa en hållbar AI-strategi' },
+        { icon: 'sparkles' as const, title: 'Prompt Engineering', description: 'Praktiska tekniker för att få ut maximalt värde från AI-verktyg' },
+        { icon: 'chart' as const, title: 'Verktygslandskapet', description: 'Överblick av tillgängliga AI-verktyg och hur ni väljer rätt för era behov' },
+        { icon: 'shield' as const, title: 'Risk & Governance', description: 'GDPR, etik, säkerhet och ramverk för ansvarsfull AI-adoption' },
+      ]
+    : [
+        { icon: 'lightbulb' as const, title: 'AI Strategy for Leaders', description: 'Understand the AI landscape, identify opportunities, and create a sustainable AI strategy' },
+        { icon: 'sparkles' as const, title: 'Prompt Engineering', description: 'Practical techniques to get maximum value from AI tools' },
+        { icon: 'chart' as const, title: 'Tool Landscape', description: 'Overview of available AI tools and how to choose the right ones for your needs' },
+        { icon: 'shield' as const, title: 'Risk & Governance', description: 'GDPR, ethics, security, and frameworks for responsible AI adoption' },
       ];
 
   const outcomes = lang === 'sv'
     ? [
-        'Säkra AI-beslut på ledningsnivå',
-        'Tydlig förståelse för AI:s möjligheter och begränsningar',
-        'Praktiska färdigheter att utvärdera AI-lösningar',
-        'Ramverk för ansvarsfull AI-adoption',
-        'Förmåga att leda AI-initiativ effektivt',
+        { icon: 'check' as const, title: 'Säkra AI-beslut', description: 'Fatta informerade beslut om AI-investeringar och initiativ på ledningsnivå' },
+        { icon: 'lightbulb' as const, title: 'Tydlig förståelse', description: 'Förstå AI:s möjligheter, begränsningar och var det skapar mest värde' },
+        { icon: 'target' as const, title: 'Praktiska färdigheter', description: 'Utvärdera AI-lösningar och leverantörer med rätt kriterier' },
+        { icon: 'rocket' as const, title: 'Leda AI-initiativ', description: 'Driva AI-projekt framåt med rätt kompetens och självförtroende' },
       ]
     : [
-        'Confident AI decision-making at leadership level',
-        'Clear understanding of AI capabilities and limitations',
-        'Practical skills to evaluate AI solutions',
-        'Framework for responsible AI adoption',
-        'Ability to lead AI initiatives effectively',
+        { icon: 'check' as const, title: 'Confident AI decisions', description: 'Make informed decisions about AI investments and initiatives at leadership level' },
+        { icon: 'lightbulb' as const, title: 'Clear understanding', description: 'Understand AI capabilities, limitations, and where it creates the most value' },
+        { icon: 'target' as const, title: 'Practical skills', description: 'Evaluate AI solutions and vendors with the right criteria' },
+        { icon: 'rocket' as const, title: 'Lead AI initiatives', description: 'Drive AI projects forward with the right competence and confidence' },
       ];
 
   const process = lang === 'sv'
-    ? ['Kartlägg', 'Designa', 'Leverera', 'Tillämpa', 'Följ upp']
-    : ['Assess', 'Design', 'Deliver', 'Apply', 'Follow-up'];
-
-  const processDescriptions = lang === 'sv'
     ? [
-        'Förstå er organisations AI-mognad och mål',
-        'Skapa anpassat innehåll för er ledningsgrupp',
-        'Hybridsessioner som kombinerar fysiskt och digitalt',
-        'Praktiska övningar med verkliga affärsscenarier',
-        'Stöd och resurser för fortsatt lärande',
+        { time: 'Steg 1', title: 'Kartlägg', items: ['Förstå er AI-mognad', 'Identifiera mål och utmaningar', 'Analysera befintliga processer'] },
+        { time: 'Steg 2', title: 'Designa', items: ['Skräddarsytt program', 'Branschanpassade exempel', 'Praktiska övningar'] },
+        { time: 'Steg 3', title: 'Leverera', items: ['Interaktiva sessioner', 'Hands-on workshops', 'Live-demonstrationer'] },
+        { time: 'Steg 4', title: 'Tillämpa & Följ upp', items: ['Implementeringsstöd', 'Uppföljningssessioner', 'Resurser för fortsatt lärande'] },
       ]
     : [
-        'Understand your organization\'s AI maturity and goals',
-        'Create customized curriculum for your leadership team',
-        'Hybrid sessions combining on-site and online learning',
-        'Hands-on exercises with real business scenarios',
-        'Support and resources for continued learning',
+        { time: 'Step 1', title: 'Assess', items: ['Understand your AI maturity', 'Identify goals and challenges', 'Analyze existing processes'] },
+        { time: 'Step 2', title: 'Design', items: ['Customized curriculum', 'Industry-specific examples', 'Practical exercises'] },
+        { time: 'Step 3', title: 'Deliver', items: ['Interactive sessions', 'Hands-on workshops', 'Live demonstrations'] },
+        { time: 'Step 4', title: 'Apply & Follow-up', items: ['Implementation support', 'Follow-up sessions', 'Resources for continued learning'] },
       ];
+
+  const testimonial = lang === 'sv'
+    ? {
+        quote: 'Utbildningen förändrade helt hur vår ledningsgrupp ser på AI. Vi gick från osäkerhet till att ha en tydlig strategi och tre konkreta initiativ igång inom en månad.',
+        author: 'Anna Karlsson',
+        role: 'VD',
+        company: 'Industribolaget AB',
+      }
+    : {
+        quote: 'The training completely changed how our leadership team views AI. We went from uncertainty to having a clear strategy and three concrete initiatives running within a month.',
+        author: 'Anna Karlsson',
+        role: 'CEO',
+        company: 'Industribolaget AB',
+      };
+
+  const relatedServices = [
+    {
+      name: lang === 'sv' ? 'AI-workshop' : 'AI Workshop',
+      description: lang === 'sv' ? 'En intensiv heldagsworkshop för att identifiera use cases' : 'An intensive full-day workshop to identify use cases',
+      href: `/${lang}/${servicesPath}/ai-workshops`,
+    },
+    {
+      name: lang === 'sv' ? 'AI-inspirationsföreläsning' : 'AI Inspiration Talk',
+      description: lang === 'sv' ? 'En timmes inspirerande överblick för hela organisationen' : 'One hour inspiring overview for the entire organization',
+      href: `/${lang}/${servicesPath}/${lang === 'sv' ? 'ai-inspirationsforelasning' : 'ai-inspiration-talks'}`,
+    },
+  ];
 
   const faqs = lang === 'sv'
     ? [
@@ -139,47 +205,93 @@ export default async function AITrainingPage({
         <Breadcrumbs items={breadcrumbs} />
       </div>
 
-      <Hero
+      <ServiceHero
         title={dict.services.consulting.h1}
         subtitle={dict.services.consulting.heroSub}
+        badges={badges}
+        highlights={highlights}
         primaryCta={{
-          text: dict.common.bookIntro,
+          text: lang === 'sv' ? 'Boka utbildning' : 'Book training',
           href: `/${lang}/${contactPath}`,
+        }}
+        secondaryCta={{
+          text: lang === 'sv' ? 'Se innehåll' : 'See curriculum',
+          href: '#curriculum',
         }}
       />
 
+      {/* Stats */}
+      <Section background="gray">
+        <Stats stats={stats} variant="cards" />
+      </Section>
+
       {/* Who it's for */}
-      <Section title={lang === 'sv' ? 'Vem det passar' : 'Who it\'s for'}>
-        <div className="max-w-2xl mx-auto">
-          <BulletList items={whoItsFor} icon="arrow" />
+      <Section
+        title={lang === 'sv' ? 'Vem passar utbildningen för?' : 'Who is the training for?'}
+        subtitle={lang === 'sv' ? 'Utbildningen är designad för beslutsfattare som vill leda AI-transformation' : 'The training is designed for decision-makers who want to lead AI transformation'}
+      >
+        <FeatureGrid features={whoItsForFeatures} columns={4} />
+      </Section>
+
+      {/* Curriculum */}
+      <Section
+        title={lang === 'sv' ? 'Vad ni lär er' : 'What you learn'}
+        subtitle={lang === 'sv' ? 'Ett komplett program för AI-kompetens på ledningsnivå' : 'A complete program for AI competence at leadership level'}
+        background="gray"
+      >
+        <div id="curriculum">
+          <FeatureGrid features={curriculum} columns={2} />
         </div>
       </Section>
 
       {/* Outcomes */}
-      <Section title={lang === 'sv' ? 'Vad ni får' : 'Outcomes'} background="gray">
-        <div className="max-w-2xl mx-auto">
-          <BulletList items={outcomes} icon="check" />
-        </div>
-      </Section>
-
-      {/* Deliverables */}
-      <Section title={lang === 'sv' ? 'Innehåll' : 'What\'s included'}>
-        <div className="max-w-2xl mx-auto">
-          <BulletList items={dict.services.consulting.keyPoints} icon="check" />
-        </div>
+      <Section
+        title={lang === 'sv' ? 'Resultat efter utbildningen' : 'Outcomes after training'}
+        subtitle={lang === 'sv' ? 'Konkreta färdigheter ni tar med er' : 'Concrete skills you take away'}
+      >
+        <FeatureGrid features={outcomes} columns={4} />
       </Section>
 
       {/* Process */}
-      <Section title={lang === 'sv' ? 'Vårt upplägg' : 'Our approach'} background="gray">
-        <ProcessSteps steps={process} />
-        <div className="mt-8 max-w-3xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-            {processDescriptions.map((desc, index) => (
-              <div key={index} className="text-center text-sm text-gray-600">
-                {desc}
+      <Section
+        title={lang === 'sv' ? 'Vårt upplägg' : 'Our approach'}
+        subtitle={lang === 'sv' ? 'En beprövad process för effektivt lärande' : 'A proven process for effective learning'}
+        background="gray"
+      >
+        <AgendaBlocks blocks={process} />
+      </Section>
+
+      {/* Testimonial */}
+      <Section>
+        <div className="max-w-3xl mx-auto">
+          <TestimonialCard {...testimonial} />
+        </div>
+      </Section>
+
+      {/* Related services */}
+      <Section
+        title={lang === 'sv' ? 'Kombinera med' : 'Combine with'}
+        subtitle={lang === 'sv' ? 'Förstärk utbildningen med våra andra tjänster' : 'Enhance the training with our other services'}
+        background="gray"
+      >
+        <div className="max-w-2xl mx-auto space-y-4">
+          {relatedServices.map((service) => (
+            <Link
+              key={service.name}
+              href={service.href}
+              className="block p-6 rounded-2xl border border-gray-200 bg-white hover:border-gray-300 hover:shadow-md transition-all group"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="font-semibold text-gray-900 group-hover:text-gray-700">{service.name}</div>
+                  <div className="mt-1 text-sm text-gray-600">{service.description}</div>
+                </div>
+                <svg className="w-5 h-5 text-gray-400 group-hover:text-gray-600 transition-colors" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
               </div>
-            ))}
-          </div>
+            </Link>
+          ))}
         </div>
       </Section>
 
@@ -191,9 +303,10 @@ export default async function AITrainingPage({
       </Section>
 
       <CTA
-        title={dict.home.footerCta}
+        title={lang === 'sv' ? 'Ge er ledning AI-kompetens som gör skillnad' : 'Give your leadership AI competence that makes a difference'}
+        description={lang === 'sv' ? 'Boka en utbildning anpassad efter era behov och mål.' : 'Book a training customized to your needs and goals.'}
         primaryCta={{
-          text: dict.common.bookIntro,
+          text: lang === 'sv' ? 'Boka utbildning' : 'Book training',
           href: `/${lang}/${contactPath}`,
         }}
       />

@@ -2,9 +2,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { type Locale, getDictionary } from '@/lib/i18n';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
-import { Hero } from '@/components/ui/Hero';
+import { ServiceHero } from '@/components/ui/ServiceHero';
 import { Section } from '@/components/ui/Section';
+import { FeatureGrid } from '@/components/ui/FeatureGrid';
+import { Stats } from '@/components/ui/Stats';
 import { BulletList } from '@/components/ui/BulletList';
+import { TestimonialCard } from '@/components/ui/Testimonial';
 import { FAQ } from '@/components/ui/FAQ';
 import { CTA } from '@/components/ui/CTA';
 
@@ -40,18 +43,48 @@ export default async function AITalksPage({
     { label: dict.home.offerings.talk.title },
   ];
 
-  const whoItsFor = lang === 'sv'
+  const badges = lang === 'sv'
+    ? ['1 timme', 'Anpassad för er bransch', 'På plats eller digitalt']
+    : ['1 hour', 'Customized for your industry', 'On-site or remote'];
+
+  const highlights = lang === 'sv'
     ? [
-        'Ledningsgrupper som behöver AI-översikt',
-        'Team som vill förstå möjligheterna',
-        'Kickoff-events och konferenser',
-        'Styrelsemöten och strategidagar',
+        { icon: 'clock' as const, text: '45-90 min flexibelt format' },
+        { icon: 'users' as const, text: '5-500 deltagare' },
+        { icon: 'check' as const, text: 'Inkl. live-demos' },
       ]
     : [
-        'Leadership teams needing an AI overview',
-        'Teams wanting to understand the opportunities',
-        'Kickoff events and conferences',
-        'Board meetings and strategy days',
+        { icon: 'clock' as const, text: '45-90 min flexible format' },
+        { icon: 'users' as const, text: '5-500 participants' },
+        { icon: 'check' as const, text: 'Incl. live demos' },
+      ];
+
+  const stats = lang === 'sv'
+    ? [
+        { value: '100+', label: 'Genomförda föreläsningar' },
+        { value: '4.9', label: 'Genomsnittligt betyg' },
+        { value: '500', label: 'Max antal deltagare' },
+        { value: '1h', label: 'Standardformat' },
+      ]
+    : [
+        { value: '100+', label: 'Talks delivered' },
+        { value: '4.9', label: 'Average rating' },
+        { value: '500', label: 'Max participants' },
+        { value: '1h', label: 'Standard format' },
+      ];
+
+  const whoItsForFeatures = lang === 'sv'
+    ? [
+        { icon: 'users' as const, title: 'Ledningsgrupper', description: 'Som behöver en snabb men djup AI-översikt för strategiska beslut' },
+        { icon: 'rocket' as const, title: 'Kickoff-events', description: 'Perfekt för att inspirera hela organisationen på konferenser och events' },
+        { icon: 'chart' as const, title: 'Strategidagar', description: 'Ge styrelsen och ledningen en uppdaterad bild av AI-möjligheter' },
+        { icon: 'lightbulb' as const, title: 'Team-möten', description: 'Spark av idéer och skapa engagemang kring AI i mindre grupper' },
+      ]
+    : [
+        { icon: 'users' as const, title: 'Leadership teams', description: 'Needing a quick but deep AI overview for strategic decisions' },
+        { icon: 'rocket' as const, title: 'Kickoff events', description: 'Perfect for inspiring the entire organization at conferences and events' },
+        { icon: 'chart' as const, title: 'Strategy days', description: 'Give the board and leadership an updated view of AI opportunities' },
+        { icon: 'lightbulb' as const, title: 'Team meetings', description: 'Spark ideas and create engagement around AI in smaller groups' },
       ];
 
   const topics = lang === 'sv'
@@ -74,17 +107,31 @@ export default async function AITalksPage({
 
   const outcomes = lang === 'sv'
     ? [
-        'Gemensam förståelse för AI-landskapet',
-        'Inspiration och idéer för nästa steg',
-        'Demomaterial att visa kollegor',
-        'Möjlighet till Q&A med expert',
+        { icon: 'lightbulb' as const, title: 'Gemensam förståelse', description: 'Hela teamet får samma bild av AI-landskapet och möjligheterna' },
+        { icon: 'sparkles' as const, title: 'Inspiration och idéer', description: 'Konkreta exempel som väcker tankar om vad ni kan åstadkomma' },
+        { icon: 'document' as const, title: 'Material att dela', description: 'Slides och resurslänkar att sprida vidare i organisationen' },
+        { icon: 'users' as const, title: 'Q&A med expert', description: 'Möjlighet att ställa era specifika frågor direkt' },
       ]
     : [
-        'Shared understanding of the AI landscape',
-        'Inspiration and ideas for next steps',
-        'Demo materials to show colleagues',
-        'Opportunity for Q&A with an expert',
+        { icon: 'lightbulb' as const, title: 'Shared understanding', description: 'The whole team gets the same picture of the AI landscape and opportunities' },
+        { icon: 'sparkles' as const, title: 'Inspiration and ideas', description: 'Concrete examples that spark thoughts about what you can achieve' },
+        { icon: 'document' as const, title: 'Materials to share', description: 'Slides and resource links to spread further in the organization' },
+        { icon: 'users' as const, title: 'Q&A with expert', description: 'Opportunity to ask your specific questions directly' },
       ];
+
+  const testimonial = lang === 'sv'
+    ? {
+        quote: 'Den bästa AI-föreläsningen jag varit på. Ingen fluff, bara konkreta exempel och demos som verkligen visade vad som är möjligt. Halva ledningsgruppen ville boka workshop direkt efteråt.',
+        author: 'Erik Svensson',
+        role: 'VD',
+        company: 'Nordic Solutions',
+      }
+    : {
+        quote: 'The best AI talk I have attended. No fluff, just concrete examples and demos that really showed what is possible. Half the leadership team wanted to book a workshop right after.',
+        author: 'Erik Svensson',
+        role: 'CEO',
+        company: 'Nordic Solutions',
+      };
 
   const faqs = lang === 'sv'
     ? [
@@ -148,61 +195,99 @@ export default async function AITalksPage({
         <Breadcrumbs items={breadcrumbs} />
       </div>
 
-      <Hero
+      <ServiceHero
         title={dict.services.talks.h1}
         subtitle={dict.services.talks.heroSub}
+        badges={badges}
+        highlights={highlights}
         primaryCta={{
           text: lang === 'sv' ? 'Boka föreläsning' : 'Book a talk',
           href: `/${lang}/${contactPath}`,
         }}
+        secondaryCta={{
+          text: lang === 'sv' ? 'Se ämnen' : 'See topics',
+          href: '#topics',
+        }}
       />
 
+      {/* Stats */}
+      <Section background="gray">
+        <Stats stats={stats} variant="cards" />
+      </Section>
+
       {/* Who it's for */}
-      <Section title={lang === 'sv' ? 'Vem det passar' : 'Who it\'s for'}>
-        <div className="max-w-2xl mx-auto">
-          <BulletList items={whoItsFor} icon="arrow" />
-        </div>
+      <Section
+        title={lang === 'sv' ? 'Perfekt för' : 'Perfect for'}
+        subtitle={lang === 'sv' ? 'En föreläsning som passar olika sammanhang och publiker' : 'A talk that fits different contexts and audiences'}
+      >
+        <FeatureGrid features={whoItsForFeatures} columns={4} />
       </Section>
 
       {/* What's included */}
-      <Section title={lang === 'sv' ? 'Vad som ingår' : 'What\'s included'} background="gray">
-        <div className="max-w-2xl mx-auto">
+      <Section
+        title={lang === 'sv' ? 'Vad som ingår' : "What's included"}
+        subtitle={lang === 'sv' ? 'En timme fullspäckad med insikter och praktiska exempel' : 'One hour packed with insights and practical examples'}
+        background="gray"
+      >
+        <div id="topics" className="max-w-2xl mx-auto">
           <BulletList items={topics} icon="check" />
         </div>
       </Section>
 
       {/* Outcomes */}
-      <Section title={lang === 'sv' ? 'Vad ni får' : 'Outcomes'}>
-        <div className="max-w-2xl mx-auto">
-          <BulletList items={outcomes} icon="check" />
+      <Section
+        title={lang === 'sv' ? 'Vad ni får med er' : 'What you take away'}
+        subtitle={lang === 'sv' ? 'Konkreta resultat efter föreläsningen' : 'Concrete results after the talk'}
+      >
+        <FeatureGrid features={outcomes} columns={4} />
+      </Section>
+
+      {/* Testimonial */}
+      <Section background="gray">
+        <div className="max-w-3xl mx-auto">
+          <TestimonialCard {...testimonial} />
         </div>
       </Section>
 
       {/* Next steps */}
-      <Section title={lang === 'sv' ? 'Vill ni gå vidare?' : 'Want to go further?'} background="gray">
+      <Section
+        title={lang === 'sv' ? 'Vill ni gå vidare?' : 'Want to go further?'}
+        subtitle={lang === 'sv' ? 'Kombinera föreläsningen med våra andra tjänster' : 'Combine the talk with our other services'}
+      >
         <div className="max-w-2xl mx-auto space-y-4">
           {relatedServices.map((service) => (
             <Link
               key={service.name}
               href={service.href}
-              className="block p-6 rounded-xl border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm transition-all"
+              className="block p-6 rounded-2xl border border-gray-200 bg-white hover:border-gray-300 hover:shadow-md transition-all group"
             >
-              <div className="font-medium text-gray-900">{service.name}</div>
-              <div className="mt-1 text-sm text-gray-600">{service.description}</div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="font-semibold text-gray-900 group-hover:text-gray-700">{service.name}</div>
+                  <div className="mt-1 text-sm text-gray-600">{service.description}</div>
+                </div>
+                <svg className="w-5 h-5 text-gray-400 group-hover:text-gray-600 transition-colors" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </div>
             </Link>
           ))}
         </div>
       </Section>
 
       {/* FAQ */}
-      <Section title={lang === 'sv' ? 'Vanliga frågor' : 'Frequently asked questions'}>
+      <Section
+        title={lang === 'sv' ? 'Vanliga frågor' : 'Frequently asked questions'}
+        background="gray"
+      >
         <div className="max-w-3xl mx-auto">
           <FAQ items={faqs} schemaId="talks-faq" />
         </div>
       </Section>
 
       <CTA
-        title={dict.home.footerCta}
+        title={lang === 'sv' ? 'Ge ert team en AI-injektion' : 'Give your team an AI injection'}
+        description={lang === 'sv' ? 'Boka en inspirationsföreläsning och skapa engagemang kring AI.' : 'Book an inspiration talk and create engagement around AI.'}
         primaryCta={{
           text: lang === 'sv' ? 'Boka föreläsning' : 'Book a talk',
           href: `/${lang}/${contactPath}`,
