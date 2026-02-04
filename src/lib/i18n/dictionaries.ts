@@ -123,7 +123,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         },
         workshop: {
           title: 'AI Workshop',
-          description: '2 hours, interactive. Leave with prioritized use cases and a concrete action plan.',
+          description: 'Full-day session (8 hours). Leave with prioritized use cases, hands-on experience, and a concrete action plan.',
         },
         talk: {
           title: 'AI Inspiration Talk',
@@ -162,9 +162,9 @@ const dictionaries: Record<Locale, Dictionary> = {
         ],
       },
       workshops: {
-        title: 'AI Workshop for Companies (2 hours) | Use Cases + Roadmap',
-        metaDescription: 'A hands-on 2-hour AI workshop for leadership and teams. Needs analysis, trend scan and tailored demos. Leave with prioritized use cases and next steps.',
-        h1: 'AI Workshop (2 hours): identify 3–5 high-ROI use cases',
+        title: 'AI Workshop for Companies (Full Day) | Use Cases + Roadmap',
+        metaDescription: 'A hands-on full-day AI workshop (8 hours) for leadership and teams. Needs analysis, trend scan, tailored demos, and hands-on exercises. Leave with prioritized use cases and next steps.',
+        h1: 'AI Workshop (Full Day): identify and validate high-ROI use cases',
         heroSub: 'An interactive session that aligns stakeholders, maps workflows, and produces a practical action plan.',
         whatYouGet: [
           'Prioritized use case list (Impact × Effort)',
@@ -241,7 +241,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         },
         workshop: {
           title: 'AI-workshop',
-          description: '2 timmar, interaktiv. Gå därifrån med prioriterade use cases och en konkret plan.',
+          description: 'Heldagsworkshop (8 timmar). Gå därifrån med prioriterade use cases, praktisk erfarenhet och en konkret plan.',
         },
         talk: {
           title: 'AI-inspirationsföreläsning',
@@ -280,9 +280,9 @@ const dictionaries: Record<Locale, Dictionary> = {
         ],
       },
       workshops: {
-        title: 'AI-workshop för företag (2 timmar) | Use cases + roadmap',
-        metaDescription: 'En praktisk 2-timmars AI-workshop. Behovsanalys, trendspaning och skräddarsydda demos. Ni går därifrån med prioriterade use cases och nästa steg.',
-        h1: 'AI-workshop (2 timmar): hitta 3–5 hög-ROI use cases',
+        title: 'AI-workshop för företag (heldag) | Use cases + roadmap',
+        metaDescription: 'En praktisk heldags AI-workshop (8 timmar). Behovsanalys, trendspaning, skräddarsydda demos och praktiska övningar. Ni går därifrån med prioriterade use cases och nästa steg.',
+        h1: 'AI-workshop (heldag): identifiera och validera hög-ROI use cases',
         heroSub: 'En interaktiv session som skapar samsyn, kartlägger arbetsflöden och ger en konkret plan.',
         whatYouGet: [
           'Prioriterad lista (Impact × Effort)',

@@ -111,7 +111,7 @@ export default async function AITalksPage({
   const relatedServices = [
     {
       name: lang === 'sv' ? 'AI-workshop' : 'AI Workshop',
-      description: lang === 'sv' ? 'Gå djupare med en 2-timmars interaktiv session' : 'Go deeper with a 2-hour interactive session',
+      description: lang === 'sv' ? 'Gå djupare med en heldags interaktiv session' : 'Go deeper with a full-day interactive session',
       href: `/${lang}/${servicesPath}/ai-workshops`,
     },
     {
