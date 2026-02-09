@@ -1,0 +1,8 @@
+<svg width="320" height="96" viewBox="0 0 320 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="316" height="92" rx="20" fill="#FBF4F2"/>
+  <rect x="2" y="2" width="316" height="92" rx="20" stroke="#E6DDD9" stroke-width="2"/>
+  <circle cx="48" cy="48" r="12" fill="#24314A"/>
+  <path d="M48 25V34M48 62V71M25 48H34M62 48H71M32.6 32.6L38.5 38.5M57.5 57.5L63.4 63.4M63.4 32.6L57.5 38.5M38.5 57.5L32.6 63.4" stroke="#7D89A2" stroke-width="2.4" stroke-linecap="round"/>
+  <text x="90" y="44" fill="#24314A" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.8">NOVA</text>
+  <text x="90" y="63" fill="#24314A" font-family="Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="0.8">CORE</text>
+</svg>

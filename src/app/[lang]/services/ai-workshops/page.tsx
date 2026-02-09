@@ -181,7 +181,7 @@ export default async function AIWorkshopsPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+      <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
         <Breadcrumbs items={breadcrumbs} />
       </div>
 

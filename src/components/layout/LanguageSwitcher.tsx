@@ -26,7 +26,7 @@ export function LanguageSwitcher({ currentLang }: LanguageSwitcherProps) {
     const segments = pathWithoutLocale.split('/').filter(Boolean);
     const convertedSegments = segments.map((segment) => {
       // Find if this segment exists in route mappings
-      for (const [canonical, mappings] of Object.entries(routeMappings)) {
+      for (const [, mappings] of Object.entries(routeMappings)) {
         if (mappings[currentLang] === segment) {
           return mappings[targetLang];
         }
@@ -41,7 +41,7 @@ export function LanguageSwitcher({ currentLang }: LanguageSwitcherProps) {
   return (
     <Link
       href={getTargetPath()}
-      className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+      className="rounded-full border border-[var(--border)] bg-white/70 px-3 py-1.5 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
     >
       {localeNames[targetLang]}
     </Link>

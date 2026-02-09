@@ -191,7 +191,7 @@ export default async function AITalksPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+      <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
         <Breadcrumbs items={breadcrumbs} />
       </div>
 
@@ -229,8 +229,8 @@ export default async function AITalksPage({
         subtitle={lang === 'sv' ? 'En timme fullspäckad med insikter och praktiska exempel' : 'One hour packed with insights and practical examples'}
         background="gray"
       >
-        <div id="topics" className="max-w-2xl mx-auto">
-          <BulletList items={topics} icon="check" />
+        <div id="topics" className="max-w-4xl mx-auto">
+          <BulletList items={topics} icon="check" variant="showcase" />
         </div>
       </Section>
 
@@ -259,14 +259,14 @@ export default async function AITalksPage({
             <Link
               key={service.name}
               href={service.href}
-              className="block p-6 rounded-2xl border border-gray-200 bg-white hover:border-gray-300 hover:shadow-md transition-all group"
+              className="group block rounded-3xl border border-[var(--border)] bg-[linear-gradient(170deg,#ffffff_0%,#f7f9fc_100%)] p-6 shadow-[0_20px_36px_-32px_rgba(26,35,55,0.9)] transition-all hover:-translate-y-0.5 hover:shadow-[0_28px_46px_-34px_rgba(26,35,55,0.8)]"
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="font-semibold text-gray-900 group-hover:text-gray-700">{service.name}</div>
-                  <div className="mt-1 text-sm text-gray-600">{service.description}</div>
+                  <div className="font-semibold text-[var(--foreground)] group-hover:text-[var(--accent)]">{service.name}</div>
+                  <div className="mt-1 text-sm text-[var(--muted)]">{service.description}</div>
                 </div>
-                <svg className="w-5 h-5 text-gray-400 group-hover:text-gray-600 transition-colors" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                <svg className="h-5 w-5 text-[var(--muted)]/75 transition-colors group-hover:text-[var(--accent)]" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
               </div>

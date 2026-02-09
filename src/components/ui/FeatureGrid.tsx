@@ -75,15 +75,15 @@ export function FeatureGrid({ features, columns = 3 }: FeatureGridProps) {
       {features.map((feature, index) => (
         <div
           key={index}
-          className="relative p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-gray-200 transition-all duration-200"
+          className="relative rounded-3xl border border-[var(--border)] bg-[linear-gradient(170deg,#ffffff_0%,#f7f9fc_100%)] p-6 shadow-[0_24px_40px_-34px_rgba(26,35,55,0.9)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_30px_50px_-35px_rgba(26,35,55,0.8)]"
         >
-          <div className="w-12 h-12 rounded-xl bg-gray-900 text-white flex items-center justify-center mb-4">
+          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[linear-gradient(145deg,#f9dfd2_0%,#dde8fa_100%)] text-[var(--foreground)]">
             {icons[feature.icon]}
           </div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+          <h3 className="mb-2 text-lg font-semibold text-[var(--foreground)]">
             {feature.title}
           </h3>
-          <p className="text-gray-600 text-sm leading-relaxed">
+          <p className="text-sm leading-relaxed text-[var(--muted)]">
             {feature.description}
           </p>
         </div>

@@ -1,0 +1,8 @@
+<svg width="320" height="96" viewBox="0 0 320 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="316" height="92" rx="20" fill="#F6F2FB"/>
+  <rect x="2" y="2" width="316" height="92" rx="20" stroke="#DDD8EA" stroke-width="2"/>
+  <path d="M30 63L46 28L62 63H54L50 54H42L38 63H30Z" fill="#25324B"/>
+  <circle cx="46" cy="21" r="4" fill="#7B8DB0"/>
+  <text x="84" y="44" fill="#25324B" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.8">AURORA</text>
+  <text x="84" y="63" fill="#25324B" font-family="Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="0.8">LABS</text>
+</svg>

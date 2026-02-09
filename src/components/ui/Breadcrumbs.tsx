@@ -31,21 +31,21 @@ export function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
       <nav aria-label="Breadcrumb" className={`text-sm ${className}`}>
-        <ol className="flex flex-wrap items-center gap-2">
+        <ol className="inline-flex flex-wrap items-center gap-2 rounded-full border border-[var(--border)] bg-white/70 px-4 py-2 shadow-[0_14px_28px_-26px_rgba(26,35,55,0.9)]">
           {items.map((item, index) => (
             <li key={item.label} className="flex items-center gap-2">
               {index > 0 && (
-                <span className="text-gray-400">/</span>
+                <span className="text-[var(--muted)]/60">/</span>
               )}
               {item.href ? (
                 <Link
                   href={item.href}
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
                 >
                   {item.label}
                 </Link>
               ) : (
-                <span className="text-gray-900 font-medium">{item.label}</span>
+                <span className="font-medium text-[var(--foreground)]">{item.label}</span>
               )}
             </li>
           ))}

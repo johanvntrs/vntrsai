@@ -51,20 +51,16 @@ export function ServiceHero({
   highlights,
 }: ServiceHeroProps) {
   return (
-    <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100" />
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-50/50 to-transparent" />
-
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center">
+    <section className="pt-24 pb-16 lg:pt-32 lg:pb-24">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl rounded-[2rem] border border-[var(--border)] bg-[var(--surface-soft)] px-8 py-12 text-center shadow-[0_26px_46px_-38px_rgba(26,35,55,0.7)] lg:px-14 lg:py-16">
           {/* Badges */}
           {badges && badges.length > 0 && (
             <div className="flex flex-wrap justify-center gap-2 mb-6">
               {badges.map((badge, index) => (
                 <span
                   key={index}
-                  className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-900 text-white"
+                  className="inline-flex items-center rounded-full border border-[var(--border)] bg-white/75 px-3 py-1 text-xs font-medium text-[var(--foreground)]"
                 >
                   {badge}
                 </span>
@@ -73,12 +69,12 @@ export function ServiceHero({
           )}
 
           {/* Title */}
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-semibold tracking-tight text-[var(--foreground)] sm:text-5xl lg:text-6xl">
             {title}
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-6 text-lg text-gray-600 sm:text-xl leading-relaxed">
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-[var(--muted)] sm:text-xl">
             {subtitle}
           </p>
 
@@ -88,9 +84,9 @@ export function ServiceHero({
               {highlights.map((highlight, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-2 text-gray-700"
+                  className="flex items-center gap-2 rounded-full border border-[var(--border)] bg-white/70 px-3 py-1.5 text-[var(--muted)]"
                 >
-                  <span className="text-gray-900">{icons[highlight.icon]}</span>
+                  <span className="text-[var(--foreground)]">{icons[highlight.icon]}</span>
                   <span className="text-sm font-medium">{highlight.text}</span>
                 </div>
               ))}
@@ -101,7 +97,7 @@ export function ServiceHero({
           <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
             <Link
               href={primaryCta.href}
-              className="inline-flex items-center justify-center rounded-full bg-gray-900 px-8 py-4 text-base font-medium text-white shadow-lg hover:bg-gray-800 hover:shadow-xl transition-all duration-200"
+              className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-8 py-4 text-base font-medium text-white shadow-[0_14px_34px_-18px_rgba(26,35,55,0.9)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--accent-strong)]"
             >
               {primaryCta.text}
               <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
@@ -111,7 +107,7 @@ export function ServiceHero({
             {secondaryCta && (
               <Link
                 href={secondaryCta.href}
-                className="inline-flex items-center justify-center rounded-full border-2 border-gray-300 px-8 py-4 text-base font-medium text-gray-700 hover:border-gray-400 hover:bg-gray-50 transition-all duration-200"
+                className="inline-flex items-center justify-center rounded-full border border-[var(--border)] bg-white/80 px-8 py-4 text-base font-medium text-[var(--foreground)] transition-all duration-200 hover:bg-white"
               >
                 {secondaryCta.text}
               </Link>

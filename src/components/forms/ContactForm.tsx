@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import type { Locale, Dictionary } from '@/lib/i18n';
 
 interface ContactFormProps {
@@ -10,21 +10,22 @@ interface ContactFormProps {
 
 export function ContactForm({ lang, dict }: ContactFormProps) {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-  const [utmParams, setUtmParams] = useState({
-    utm_source: '',
-    utm_medium: '',
-    utm_campaign: '',
-  });
+  const [utmParams] = useState(() => {
+    if (typeof window === 'undefined') {
+      return {
+        utm_source: '',
+        utm_medium: '',
+        utm_campaign: '',
+      };
+    }
 
-  useEffect(() => {
-    // Capture UTM parameters from URL
     const params = new URLSearchParams(window.location.search);
-    setUtmParams({
+    return {
       utm_source: params.get('utm_source') || '',
       utm_medium: params.get('utm_medium') || '',
       utm_campaign: params.get('utm_campaign') || '',
-    });
-  }, []);
+    };
+  });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -69,9 +70,9 @@ export function ContactForm({ lang, dict }: ContactFormProps) {
 
   if (status === 'success') {
     return (
-      <div className="rounded-2xl bg-green-50 p-8 text-center">
+      <div className="rounded-3xl border border-[#b9dec8] bg-[linear-gradient(140deg,#eaf8ef_0%,#f2fcf6_100%)] p-8 text-center">
         <svg
-          className="mx-auto h-12 w-12 text-green-600"
+          className="mx-auto h-12 w-12 text-[#2f7f54]"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth="1.5"
@@ -83,7 +84,7 @@ export function ContactForm({ lang, dict }: ContactFormProps) {
             d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <p className="mt-4 text-lg font-medium text-green-900">
+        <p className="mt-4 text-lg font-medium text-[#1e4d33]">
           {dict.contact.form.success}
         </p>
       </div>
@@ -91,9 +92,9 @@ export function ContactForm({ lang, dict }: ContactFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6 rounded-3xl border border-[var(--border)] bg-white/75 p-6 shadow-[0_22px_40px_-34px_rgba(26,35,55,0.9)]">
       <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="name" className="block text-sm font-medium text-[var(--foreground)]">
           {dict.contact.form.name}
         </label>
         <input
@@ -101,12 +102,12 @@ export function ContactForm({ lang, dict }: ContactFormProps) {
           name="name"
           id="name"
           required
-          className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+          className="mt-1 block w-full rounded-xl border border-[var(--border)] bg-white px-4 py-3 text-[var(--foreground)] placeholder:text-[var(--muted)] focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]"
         />
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="email" className="block text-sm font-medium text-[var(--foreground)]">
           {dict.contact.form.email}
         </label>
         <input
@@ -114,24 +115,24 @@ export function ContactForm({ lang, dict }: ContactFormProps) {
           name="email"
           id="email"
           required
-          className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+          className="mt-1 block w-full rounded-xl border border-[var(--border)] bg-white px-4 py-3 text-[var(--foreground)] placeholder:text-[var(--muted)] focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]"
         />
       </div>
 
       <div>
-        <label htmlFor="company" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="company" className="block text-sm font-medium text-[var(--foreground)]">
           {dict.contact.form.company}
         </label>
         <input
           type="text"
           name="company"
           id="company"
-          className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+          className="mt-1 block w-full rounded-xl border border-[var(--border)] bg-white px-4 py-3 text-[var(--foreground)] placeholder:text-[var(--muted)] focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]"
         />
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="message" className="block text-sm font-medium text-[var(--foreground)]">
           {dict.contact.form.message}
         </label>
         <textarea
@@ -139,7 +140,7 @@ export function ContactForm({ lang, dict }: ContactFormProps) {
           id="message"
           rows={4}
           required
-          className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
+          className="mt-1 block w-full rounded-xl border border-[var(--border)] bg-white px-4 py-3 text-[var(--foreground)] placeholder:text-[var(--muted)] focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]"
         />
       </div>
 
@@ -150,13 +151,13 @@ export function ContactForm({ lang, dict }: ContactFormProps) {
       <input type="hidden" name="language" value={lang} />
 
       {status === 'error' && (
-        <p className="text-sm text-red-600">{dict.contact.form.error}</p>
+        <p className="text-sm text-[#b53b5a]">{dict.contact.form.error}</p>
       )}
 
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className="w-full rounded-full bg-gray-900 px-6 py-3 text-sm font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="w-full rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[var(--accent-strong)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {status === 'submitting'
           ? '...'

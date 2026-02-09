@@ -1,13 +1,18 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Plus_Jakarta_Sans, Sora } from 'next/font/google';
 import '../globals.css';
 import { i18n, type Locale, getDictionary } from '@/lib/i18n';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 
-const inter = Inter({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-plus-jakarta',
+});
+
+const sora = Sora({
+  subsets: ['latin'],
+  variable: '--font-sora',
 });
 
 export async function generateStaticParams() {
@@ -82,7 +87,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${plusJakarta.variable} ${sora.variable} page-shell font-sans antialiased`}>
         <Header lang={lang} dict={dict} />
         <main className="min-h-screen">{children}</main>
         <Footer lang={lang} dict={dict} />

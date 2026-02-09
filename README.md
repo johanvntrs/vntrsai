@@ -14,6 +14,12 @@ pnpm dev
 bun dev
 ```
 
+If you hit a Turbopack runtime error in a Unicode path (for example folder names with `ö`), this project defaults to Webpack for local reliability. You can still test Turbopack with:
+
+```bash
+npm run dev:turbo
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.

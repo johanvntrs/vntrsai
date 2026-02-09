@@ -6,6 +6,7 @@ import { Card, CardGrid } from '@/components/ui/Card';
 import { ProcessSteps } from '@/components/ui/ProcessSteps';
 import { FAQ } from '@/components/ui/FAQ';
 import { CTA } from '@/components/ui/CTA';
+import { TrustedLogosCarousel } from '@/components/ui/TrustedLogosCarousel';
 
 export async function generateMetadata({
   params,
@@ -60,6 +61,29 @@ export default async function HomePage({
     },
   ];
 
+  const placeholderLogos = [
+    {
+      name: 'NORDIC FLOW',
+      src: '/logos/nordic-flow.svg',
+    },
+    {
+      name: 'AURORA LABS',
+      src: '/logos/aurora-labs.svg',
+    },
+    {
+      name: 'PULSE OPS',
+      src: '/logos/pulse-ops.svg',
+    },
+    {
+      name: 'LUMEN GRID',
+      src: '/logos/lumen-grid.svg',
+    },
+    {
+      name: 'NOVA CORE',
+      src: '/logos/nova-core.svg',
+    },
+  ];
+
   return (
     <>
       <Hero
@@ -97,17 +121,7 @@ export default async function HomePage({
 
       {/* Trusted by */}
       <Section title={dict.home.trustedByTitle} background="gray">
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60">
-          {/* Placeholder logos - replace with actual client logos */}
-          {[1, 2, 3, 4, 5].map((i) => (
-            <div
-              key={i}
-              className="w-24 h-12 bg-gray-200 rounded flex items-center justify-center text-gray-400 text-xs"
-            >
-              Logo {i}
-            </div>
-          ))}
-        </div>
+        <TrustedLogosCarousel logos={placeholderLogos} />
       </Section>
 
       {/* FAQ Preview */}

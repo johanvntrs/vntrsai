@@ -19,11 +19,14 @@ export function Header({ lang, dict }: HeaderProps) {
   ];
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--border)]/70 bg-[var(--surface)]/78 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         <div className="flex lg:flex-1">
-          <Link href={`/${lang}`} className="-m-1.5 p-1.5">
-            <span className="text-xl font-bold text-gray-900">VNTRS AI</span>
+          <Link
+            href={`/${lang}`}
+            className="-m-1.5 inline-flex items-center rounded-full p-1.5 transition-colors hover:bg-white/60"
+          >
+            <span className="text-xl font-semibold tracking-tight text-[var(--foreground)]">VNTRS AI</span>
           </Link>
         </div>
 
@@ -31,7 +34,7 @@ export function Header({ lang, dict }: HeaderProps) {
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            className="-m-2.5 inline-flex items-center justify-center rounded-full border border-[var(--border)] bg-white/80 p-2.5 text-[var(--muted)] shadow-[0_8px_24px_-16px_rgba(26,35,55,0.8)]"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <span className="sr-only">Open main menu</span>
@@ -53,7 +56,7 @@ export function Header({ lang, dict }: HeaderProps) {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              className="rounded-full px-3 py-2 text-sm font-medium text-[var(--muted)] transition-colors hover:bg-white/60 hover:text-[var(--foreground)]"
             >
               {item.name}
             </Link>
@@ -64,7 +67,7 @@ export function Header({ lang, dict }: HeaderProps) {
           <LanguageSwitcher currentLang={lang} />
           <Link
             href={`/${lang}/${lang === 'sv' ? 'kontakt' : 'contact'}`}
-            className="rounded-full bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 transition-colors"
+            className="rounded-full bg-[var(--accent)] px-5 py-2 text-sm font-medium text-white shadow-[0_10px_28px_-18px_rgba(26,35,55,0.9)] transition-all hover:-translate-y-0.5 hover:bg-[var(--accent-strong)]"
           >
             {dict.common.bookCall}
           </Link>
@@ -79,7 +82,7 @@ export function Header({ lang, dict }: HeaderProps) {
               <Link
                 key={item.name}
                 href={item.href}
-                className="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
+                className="block rounded-xl border border-transparent px-3 py-2 text-base font-medium text-[var(--muted)] transition-colors hover:border-[var(--border)] hover:bg-white/70 hover:text-[var(--foreground)]"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
@@ -89,7 +92,7 @@ export function Header({ lang, dict }: HeaderProps) {
               <LanguageSwitcher currentLang={lang} />
               <Link
                 href={`/${lang}/${lang === 'sv' ? 'kontakt' : 'contact'}`}
-                className="rounded-full bg-gray-900 px-4 py-2 text-sm font-medium text-white"
+                className="rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-medium text-white"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {dict.common.bookCall}

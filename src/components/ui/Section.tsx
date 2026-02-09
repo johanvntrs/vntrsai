@@ -13,7 +13,10 @@ export function Section({
   className = '',
   background = 'white',
 }: SectionProps) {
-  const bgClass = background === 'gray' ? 'bg-gray-50' : 'bg-white';
+  const bgClass =
+    background === 'gray'
+      ? 'bg-[linear-gradient(180deg,#f6f8fa_0%,#f2f4f7_100%)]'
+      : 'bg-transparent';
 
   return (
     <section className={`py-16 lg:py-24 ${bgClass} ${className}`}>
@@ -21,12 +24,12 @@ export function Section({
         {(title || subtitle) && (
           <div className="mx-auto max-w-2xl text-center mb-12 lg:mb-16">
             {title && (
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              <h2 className="text-3xl font-semibold tracking-tight text-[var(--foreground)] sm:text-4xl">
                 {title}
               </h2>
             )}
             {subtitle && (
-              <p className="mt-4 text-lg text-gray-600">{subtitle}</p>
+              <p className="mt-4 text-lg text-[var(--muted)]">{subtitle}</p>
             )}
           </div>
         )}

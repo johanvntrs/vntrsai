@@ -36,19 +36,22 @@ export function FAQ({ items, schemaId }: FAQProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       )}
-      <div className="divide-y divide-gray-200">
+      <div className="space-y-3">
         {items.map((item, index) => (
-          <div key={index} className="py-6">
+          <div
+            key={index}
+            className="rounded-2xl border border-[var(--border)] bg-white/80 px-5 py-4 shadow-[0_16px_30px_-28px_rgba(26,35,55,0.9)]"
+          >
             <button
               className="flex w-full items-start justify-between text-left"
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
             >
-              <span className="text-base font-medium text-gray-900">
+              <span className="text-base font-medium text-[var(--foreground)]">
                 {item.question}
               </span>
               <span className="ml-6 flex h-7 items-center">
                 <svg
-                  className={`h-5 w-5 text-gray-500 transition-transform ${
+                  className={`h-5 w-5 text-[var(--muted)] transition-transform ${
                     openIndex === index ? 'rotate-180' : ''
                   }`}
                   fill="none"
@@ -65,7 +68,7 @@ export function FAQ({ items, schemaId }: FAQProps) {
               </span>
             </button>
             {openIndex === index && (
-              <p className="mt-4 text-gray-600">{item.answer}</p>
+              <p className="mt-4 leading-relaxed text-[var(--muted)]">{item.answer}</p>
             )}
           </div>
         ))}

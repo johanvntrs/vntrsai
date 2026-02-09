@@ -54,7 +54,7 @@ export default async function ContactPage({
 
   return (
     <>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+      <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
         <Breadcrumbs items={breadcrumbs} />
       </div>
 
@@ -68,9 +68,9 @@ export default async function ContactPage({
           <div>
             <ContactForm lang={lang} dict={dict} />
           </div>
-          <div className="space-y-8">
+          <div className="space-y-8 rounded-3xl border border-[var(--border)] bg-white/70 p-6 shadow-[0_20px_36px_-32px_rgba(26,35,55,0.9)]">
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+              <h3 className="mb-4 text-lg font-semibold text-[var(--foreground)]">
                 {lang === 'sv' ? 'Våra tjänster' : 'Our services'}
               </h3>
               <div className="space-y-3">
@@ -78,7 +78,7 @@ export default async function ContactPage({
                   <Link
                     key={link.name}
                     href={link.href}
-                    className="block text-gray-600 hover:text-gray-900 transition-colors"
+                    className="block rounded-lg px-2 py-1 text-[var(--muted)] transition-colors hover:bg-white/75 hover:text-[var(--foreground)]"
                   >
                     {link.name} &rarr;
                   </Link>
@@ -86,15 +86,15 @@ export default async function ContactPage({
               </div>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <h3 className="mb-2 text-lg font-semibold text-[var(--foreground)]">
                 {lang === 'sv' ? 'Direktkontakt' : 'Direct contact'}
               </h3>
-              <p className="text-gray-600">
+              <p className="text-[var(--muted)]">
                 {lang === 'sv'
                   ? 'Eller maila oss direkt på '
                   : 'Or email us directly at '}
-                <a href="mailto:hello@vntrs.ai" className="text-gray-900 underline hover:no-underline">
-                  hello@vntrs.ai
+                <a href="mailto:hello@vntrs.com" className="text-[var(--foreground)] underline hover:no-underline">
+                  hello@vntrs.com
                 </a>
               </p>
             </div>

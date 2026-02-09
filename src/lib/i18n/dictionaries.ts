@@ -203,7 +203,7 @@ const dictionaries: Record<Locale, Dictionary> = {
       },
     },
     footer: {
-      copyright: '© 2025 VNTRS AI. All rights reserved.',
+      copyright: '© 2026 VNTRS AI. All rights reserved.',
       privacy: 'Privacy Policy',
       terms: 'Terms of Service',
     },
@@ -249,8 +249,8 @@ const dictionaries: Record<Locale, Dictionary> = {
         },
       },
       howWeWorkTitle: 'Vårt arbetssätt',
-      howWeWorkSteps: ['Upptäck', 'Prioritera', 'Prototypa', 'Implementera', 'Enablement'],
-      trustedByTitle: 'Används av team som bygger med AI',
+      howWeWorkSteps: ['Upptäck', 'Prioritera', 'Prototypa', 'Implementera', 'Uppföljning'],
+      trustedByTitle: 'Team som vi bygger AI tillsammans med',
       faqTitle: 'Vanliga frågor',
       faqs: [
         { question: 'Vilka typer av AI-lösningar hjälper ni implementera?', answer: 'Vi fokuserar på praktiska AI-tillämpningar: AI-agenter för automatisering, dokumentbearbetning, kundsupportbottar, interna kunskapsassistenter och AI-drivna features för SaaS-produkter.' },
@@ -258,7 +258,7 @@ const dictionaries: Record<Locale, Dictionary> = {
         { question: 'Hur snabbt kan vi komma igång?', answer: 'En workshop kan bokas inom 1-2 veckor. För utbildningsprogram börjar vi med en discovery-fas för att förstå era behov.' },
         { question: 'Vem bör delta i utbildningen?', answer: 'Vår utbildning är designad för ledningsgrupper, chefer och beslutsfattare som behöver förstå AI strategiskt och praktiskt.' },
       ],
-      footerCta: 'Beskriv er process—vi hittar agent-möjligheter.',
+      footerCta: 'Beskriv er process - vi hittar automatiserings-möjligheter med AI.',
     },
     services: {
       index: {
@@ -321,7 +321,7 @@ const dictionaries: Record<Locale, Dictionary> = {
       },
     },
     footer: {
-      copyright: '© 2025 VNTRS AI. Alla rättigheter förbehållna.',
+      copyright: '© 2026 VNTRS AI. Alla rättigheter förbehållna.',
       privacy: 'Integritetspolicy',
       terms: 'Användarvillkor',
     },
