@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Script from 'next/script';
 import { type Locale, getDictionary } from '@/lib/i18n';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { Hero } from '@/components/ui/Hero';
 import { Section } from '@/components/ui/Section';
-import { ContactForm } from '@/components/forms/ContactForm';
 
 export async function generateMetadata({
   params,
@@ -52,6 +52,13 @@ export default async function ContactPage({
     },
   ];
 
+  const tallySrc =
+    lang === 'sv'
+      ? 'https://tally.so/embed/7R2xJ0?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1'
+      : 'https://tally.so/embed/0Q6ORQ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1';
+
+  const tallyTitle = lang === 'sv' ? 'Kontakta oss' : 'Contact us';
+
   return (
     <>
       <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
@@ -66,7 +73,19 @@ export default async function ContactPage({
       <Section>
         <div className="max-w-3xl mx-auto grid md:grid-cols-2 gap-12">
           <div>
-            <ContactForm lang={lang} dict={dict} />
+            <div className="overflow-hidden rounded-3xl border border-[var(--border)] bg-white/75 p-2 shadow-[0_20px_36px_-32px_rgba(26,35,55,0.9)] md:p-3">
+              <iframe
+                data-tally-src={tallySrc}
+                loading="lazy"
+                width="100%"
+                height="472"
+                frameBorder="0"
+                marginHeight={0}
+                marginWidth={0}
+                title={tallyTitle}
+                className="w-full"
+              />
+            </div>
           </div>
           <div className="space-y-8 rounded-3xl border border-[var(--border)] bg-white/70 p-6 shadow-[0_20px_36px_-32px_rgba(26,35,55,0.9)]">
             <div>
@@ -101,6 +120,10 @@ export default async function ContactPage({
           </div>
         </div>
       </Section>
+
+      <Script id="tally-embed" strategy="afterInteractive">
+        {`var d=document,w="https://tally.so/widgets/embed.js",v=function(){if(typeof Tally!=="undefined"){Tally.loadEmbeds();}else{d.querySelectorAll('iframe[data-tally-src]:not([src])').forEach(function(e){e.src=e.dataset.tallySrc;});}};if(typeof Tally!=="undefined"){v();}else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s);}`}
+      </Script>
     </>
   );
 }
