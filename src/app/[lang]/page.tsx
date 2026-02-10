@@ -89,6 +89,7 @@ export default async function HomePage({
       <Hero
         title={dict.home.h1}
         subtitle={dict.home.heroSub}
+        boxed={false}
         primaryCta={{
           text: dict.home.primaryCta,
           href: `/${lang}/${contactPath}`,
