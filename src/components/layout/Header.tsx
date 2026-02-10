@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import type { Locale, Dictionary } from '@/lib/i18n';
@@ -26,7 +27,14 @@ export function Header({ lang, dict }: HeaderProps) {
             href={`/${lang}`}
             className="-m-1.5 inline-flex items-center rounded-full p-1.5 transition-colors hover:bg-white/60"
           >
-            <span className="text-xl font-semibold tracking-tight text-[var(--foreground)]">VNTRS AI</span>
+            <Image
+              src="/logos/made-by-vntrs-logo.svg"
+              alt="VNTRS AI"
+              width={256}
+              height={256}
+              className="h-10 w-10"
+              priority
+            />
           </Link>
         </div>
 
