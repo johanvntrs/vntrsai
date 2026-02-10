@@ -4,6 +4,7 @@ import '../globals.css';
 import { i18n, type Locale, getDictionary } from '@/lib/i18n';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -91,6 +92,7 @@ export default async function RootLayout({
         <Header lang={lang} dict={dict} />
         <main className="min-h-screen">{children}</main>
         <Footer lang={lang} dict={dict} />
+        <SpeedInsights />
       </body>
     </html>
   );
