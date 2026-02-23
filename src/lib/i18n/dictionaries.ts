@@ -322,8 +322,8 @@ const dictionaries: Record<Locale, Dictionary> = {
       opportunitySession: {
         title: 'AI Opportunity Session (120 min) | Identifiera 2-3 AI-initiativ med snabb effekt',
         metaDescription: 'En fokuserad AI Opportunity Session på 120 minuter för ledningsgrupper. Identifiera och prioritera 2-3 konkreta AI-initiativ som kan ge effekt inom 3-6 månader.',
-        h1: 'AI Opportunity Session: identifiera era första AI-initiativ med tydlig effekt och potential',
-        heroSub: 'En fokuserad 120-minuters session för ledningsgrupper som vill identifiera, prioritera och välja rätt nästa AI-steg.',
+        h1: 'AI Opportunity Session',
+        heroSub: 'Identifiera era första AI-initiativ med tydlig effekt och potential. En fokuserad 120-minuters session för ledningsgrupper som vill identifiera, prioritera och välja rätt nästa AI-steg.',
       },
       talks: {
         title: 'AI-inspirationsföreläsning (1 timme) | Trender, verktyg & möjligheter',
