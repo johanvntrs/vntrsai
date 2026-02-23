@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans, Sora } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import '../globals.css';
 import { i18n, type Locale, getDictionary } from '@/lib/i18n';
 import { Header } from '@/components/layout/Header';
@@ -91,6 +92,7 @@ export default async function RootLayout({
         <Header lang={lang} dict={dict} />
         <main className="min-h-screen">{children}</main>
         <Footer lang={lang} dict={dict} />
+        <Analytics />
       </body>
     </html>
   );
