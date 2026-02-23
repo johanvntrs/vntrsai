@@ -40,6 +40,11 @@ export default async function ServicesPage({
       href: `/${lang}/${servicesPath}/${lang === 'sv' ? 'ai-utbildning' : 'ai-training'}`,
     },
     {
+      title: dict.home.offerings.opportunitySession.title,
+      description: dict.home.offerings.opportunitySession.description,
+      href: `/${lang}/${servicesPath}/ai-opportunity-session`,
+    },
+    {
       title: dict.home.offerings.workshop.title,
       description: dict.home.offerings.workshop.description,
       href: `/${lang}/${servicesPath}/ai-workshops`,
@@ -64,7 +69,7 @@ export default async function ServicesPage({
       <Hero title={dict.services.index.h1} />
 
       <Section>
-        <CardGrid columns={3}>
+        <CardGrid columns={4}>
           {services.map((service) => (
             <Card
               key={service.title}

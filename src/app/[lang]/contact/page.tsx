@@ -43,6 +43,10 @@ export default async function ContactPage({
       href: `/${lang}/${servicesPath}/${lang === 'sv' ? 'ai-utbildning' : 'ai-training'}`,
     },
     {
+      name: dict.home.offerings.opportunitySession.title,
+      href: `/${lang}/${servicesPath}/ai-opportunity-session`,
+    },
+    {
       name: dict.home.offerings.workshop.title,
       href: `/${lang}/${servicesPath}/ai-workshops`,
     },

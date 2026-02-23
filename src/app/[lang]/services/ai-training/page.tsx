@@ -145,6 +145,11 @@ export default async function AITrainingPage({
 
   const relatedServices = [
     {
+      name: 'AI Opportunity Session',
+      description: lang === 'sv' ? 'Ett snabbare insteg för att identifiera 2-3 AI-initiativ innan utbildning eller workshop' : 'A faster entry offer to identify 2-3 AI initiatives before training or a workshop',
+      href: `/${lang}/${servicesPath}/ai-opportunity-session`,
+    },
+    {
       name: lang === 'sv' ? 'AI-workshop' : 'AI Workshop',
       description: lang === 'sv' ? 'En intensiv heldagsworkshop för att identifiera use cases' : 'An intensive full-day workshop to identify use cases',
       href: `/${lang}/${servicesPath}/ai-workshops`,

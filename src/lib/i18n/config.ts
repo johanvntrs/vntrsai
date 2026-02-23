@@ -18,6 +18,7 @@ export const routeMappings: Record<string, Record<Locale, string>> = {
 
   // Services
   'ai-training': { en: 'ai-training', sv: 'ai-utbildning' },
+  'ai-opportunity-session': { en: 'ai-opportunity-session', sv: 'ai-opportunity-session' },
   'ai-workshops': { en: 'ai-workshops', sv: 'ai-workshops' },
   'ai-inspiration-talks': { en: 'ai-inspiration-talks', sv: 'ai-inspirationsforelasning' },
 };

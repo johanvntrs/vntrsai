@@ -29,6 +29,7 @@ export interface Dictionary {
     offeringsTitle: string;
     offerings: {
       consulting: { title: string; description: string };
+      opportunitySession: { title: string; description: string };
       workshop: { title: string; description: string };
       talk: { title: string; description: string };
     };
@@ -59,6 +60,12 @@ export interface Dictionary {
       heroSub: string;
       whatYouGet: string[];
       agenda: string[];
+    };
+    opportunitySession: {
+      title: string;
+      metaDescription: string;
+      h1: string;
+      heroSub: string;
     };
     talks: {
       title: string;
@@ -93,7 +100,7 @@ const dictionaries: Record<Locale, Dictionary> = {
   en: {
     metadata: {
       siteName: 'VNTRS AI',
-      siteDescription: 'Executive AI training, hands-on workshops and inspiration talks for leadership teams. GDPR-aware delivery.',
+      siteDescription: 'Executive AI training, AI opportunity sessions, hands-on workshops and inspiration talks for leadership teams. GDPR-aware delivery.',
     },
     nav: {
       services: 'Services',
@@ -121,6 +128,10 @@ const dictionaries: Record<Locale, Dictionary> = {
           title: 'AI Training for Companies',
           description: 'Executive-focused AI training programs delivered on-site or online. Tailored to your organization\'s needs and goals.',
         },
+        opportunitySession: {
+          title: 'AI Opportunity Session',
+          description: 'A 120-minute leadership session to identify 2-3 concrete AI initiatives with impact potential within 3-6 months.',
+        },
         workshop: {
           title: 'AI Workshop',
           description: 'Full-day session (8 hours). Leave with prioritized use cases, hands-on experience, and a concrete action plan.',
@@ -144,8 +155,8 @@ const dictionaries: Record<Locale, Dictionary> = {
     },
     services: {
       index: {
-        title: 'AI Services | Training, Workshops & Talks',
-        metaDescription: 'AI training for companies, hands-on workshops and inspiration talks. GDPR-aware delivery for leadership teams.',
+        title: 'AI Services | Training, Opportunity Sessions, Workshops & Talks',
+        metaDescription: 'AI training for companies, AI opportunity sessions, hands-on workshops and inspiration talks. GDPR-aware delivery for leadership teams.',
         h1: 'AI services for modern teams',
       },
       consulting: {
@@ -180,6 +191,12 @@ const dictionaries: Record<Locale, Dictionary> = {
           'Roadmap + ownership',
         ],
       },
+      opportunitySession: {
+        title: 'AI Opportunity Session (120 min) | Identify 2-3 High-Impact AI Initiatives',
+        metaDescription: 'A focused 120-minute AI Opportunity Session for leadership teams. Identify and prioritize 2-3 concrete AI initiatives that can create impact within 3-6 months.',
+        h1: 'AI Opportunity Session: identify your first high-impact AI initiatives',
+        heroSub: 'A focused 120-minute session for leadership teams to identify, prioritize, and decide the next best AI opportunities.',
+      },
       talks: {
         title: 'AI Inspiration Talk (1 hour) | Trends, Tools & What\'s Next',
         metaDescription: 'A fast-paced AI talk for leadership and teams: latest trends, tools, real-world examples and practical takeaways.',
@@ -189,7 +206,7 @@ const dictionaries: Record<Locale, Dictionary> = {
     },
     contact: {
       title: 'Contact | Book a Call',
-      metaDescription: 'Get in touch to discuss AI training, workshops, or talks. Book a 20-minute intro call.',
+      metaDescription: 'Get in touch to discuss AI training, opportunity sessions, workshops, or talks. Book a 20-minute intro call.',
       h1: 'Let\'s talk about your AI opportunities',
       heroSub: 'Tell us about your challenges and we\'ll help you identify the right approach.',
       form: {
@@ -211,7 +228,7 @@ const dictionaries: Record<Locale, Dictionary> = {
   sv: {
     metadata: {
       siteName: 'VNTRS AI',
-      siteDescription: 'AI-utbildning för företag, hands-on workshops och inspirationsföreläsningar för ledningsgrupper. GDPR-medvetet.',
+      siteDescription: 'AI-utbildning för företag, AI Opportunity Sessions, hands-on workshops och inspirationsföreläsningar för ledningsgrupper. GDPR-medvetet.',
     },
     nav: {
       services: 'Tjänster',
@@ -239,6 +256,10 @@ const dictionaries: Record<Locale, Dictionary> = {
           title: 'AI-utbildning för företag',
           description: 'AI-utbildningar för ledningsgrupper, på plats eller online. Anpassade efter er organisations behov och mål.',
         },
+        opportunitySession: {
+          title: 'AI Opportunity Session',
+          description: 'En fokuserad session på 120 minuter för ledningen för att identifiera 2-3 konkreta AI-initiativ med effekt inom 3-6 månader.',
+        },
         workshop: {
           title: 'AI-workshop',
           description: 'Heldagsworkshop (8 timmar). Gå därifrån med prioriterade use cases, praktisk erfarenhet och en konkret plan.',
@@ -262,8 +283,8 @@ const dictionaries: Record<Locale, Dictionary> = {
     },
     services: {
       index: {
-        title: 'AI-tjänster | Utbildning, Workshops & Föreläsningar',
-        metaDescription: 'AI-utbildning för företag, hands-on workshops och inspirationsföreläsningar. GDPR-medveten leverans för ledningsgrupper.',
+        title: 'AI-tjänster | Utbildning, Opportunity Sessions, Workshops & Föreläsningar',
+        metaDescription: 'AI-utbildning för företag, AI Opportunity Sessions, hands-on workshops och inspirationsföreläsningar. GDPR-medveten leverans för ledningsgrupper.',
         h1: 'AI-tjänster för moderna team',
       },
       consulting: {
@@ -298,6 +319,12 @@ const dictionaries: Record<Locale, Dictionary> = {
           'Roadmap + ägarskap',
         ],
       },
+      opportunitySession: {
+        title: 'AI Opportunity Session (120 min) | Identifiera 2-3 AI-initiativ med snabb effekt',
+        metaDescription: 'En fokuserad AI Opportunity Session på 120 minuter för ledningsgrupper. Identifiera och prioritera 2-3 konkreta AI-initiativ som kan ge effekt inom 3-6 månader.',
+        h1: 'AI Opportunity Session: identifiera era första AI-initiativ med tydlig effekt och potential',
+        heroSub: 'En fokuserad 120-minuters session för ledningsgrupper som vill identifiera, prioritera och välja rätt nästa AI-steg.',
+      },
       talks: {
         title: 'AI-inspirationsföreläsning (1 timme) | Trender, verktyg & möjligheter',
         metaDescription: 'En snabb AI-dragning för ledning och team: senaste trenderna, verktygen, exempel och konkreta takeaways.',
@@ -307,7 +334,7 @@ const dictionaries: Record<Locale, Dictionary> = {
     },
     contact: {
       title: 'Kontakt | Boka ett samtal',
-      metaDescription: 'Kontakta oss för att diskutera AI-utbildning, workshops eller föreläsningar. Boka ett 20-minuters intro.',
+      metaDescription: 'Kontakta oss för att diskutera AI-utbildning, AI Opportunity Session, workshops eller föreläsningar. Boka ett 20-minuters intro.',
       h1: 'Låt oss prata om era AI-möjligheter',
       heroSub: 'Berätta om era utmaningar så hjälper vi er hitta rätt approach.',
       form: {

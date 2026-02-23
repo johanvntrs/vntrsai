@@ -13,6 +13,7 @@ export function Footer({ lang, dict }: FooterProps) {
   const footerLinks = {
     services: [
       { name: lang === 'sv' ? 'AI-utbildning' : 'AI Training', href: `/${lang}/${servicesPath}/${lang === 'sv' ? 'ai-utbildning' : 'ai-training'}` },
+      { name: 'AI Opportunity Session', href: `/${lang}/${servicesPath}/ai-opportunity-session` },
       { name: lang === 'sv' ? 'AI-workshop' : 'AI Workshop', href: `/${lang}/${servicesPath}/ai-workshops` },
       { name: lang === 'sv' ? 'AI-föreläsning' : 'AI Talk', href: `/${lang}/${servicesPath}/${lang === 'sv' ? 'ai-inspirationsforelasning' : 'ai-inspiration-talks'}` },
     ],

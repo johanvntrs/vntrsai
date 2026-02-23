@@ -157,6 +157,11 @@ export default async function AITalksPage({
 
   const relatedServices = [
     {
+      name: 'AI Opportunity Session',
+      description: lang === 'sv' ? 'Nästa steg efter föreläsningen: prioritera 2-3 konkreta AI-initiativ' : 'Next step after the talk: prioritize 2-3 concrete AI initiatives',
+      href: `/${lang}/${servicesPath}/ai-opportunity-session`,
+    },
+    {
       name: lang === 'sv' ? 'AI-workshop' : 'AI Workshop',
       description: lang === 'sv' ? 'Gå djupare med en heldags interaktiv session' : 'Go deeper with a full-day interactive session',
       href: `/${lang}/${servicesPath}/ai-workshops`,
